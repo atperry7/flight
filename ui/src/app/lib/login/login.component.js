@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: login.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T14:27:46-05:00
+ * @Last modified time: 2017-07-17T15:58:39-05:00
  */
 
 import 'login/login.styles'
@@ -15,6 +15,7 @@ const controller =
     constructor ($log, loginService, $state) {
       'ngInject'
       this.service = loginService
+      this.$log = $log
       $log.debug('flight-login ...')
       this.$state = $state
     }
@@ -27,7 +28,9 @@ const controller =
       this.service.authenticate(this.username, this.password)
                                 .then((data) => {
                                   if (data === true) {
-                                    this.$state.reload('feed')
+                                    this.$state.reload('home')
+                                  } else {
+                                    this.$log.log(`Login Fails`)
                                   }
                                 })
     }

@@ -4,12 +4,13 @@
  * @Email:  atperry7@gmail.com
  * @Filename: landingpage.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T14:44:33-05:00
+ * @Last modified time: 2017-07-17T16:53:30-05:00
  */
 
  export class LandingPageService {
    constructor () {
      'ngInject'
    }
+
 
  }

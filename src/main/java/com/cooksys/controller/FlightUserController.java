@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cooksys.dto.FlightUserCreateDto;
 import com.cooksys.dto.FlightUserCredsOnlyDto;
 import com.cooksys.dto.FlightUserDto;
 import com.cooksys.mapper.FlightUserMapper;
@@ -42,7 +43,7 @@ public class FlightUserController {
 	}
 	
 	@PostMapping("create")
-	public FlightUserDto create(@RequestBody FlightUserCredsOnlyDto user,
+	public FlightUserDto create(@RequestBody FlightUserCreateDto user,
 			@RequestParam(required = false) String firstName, 
 			@RequestParam(required = false) String lastName,
 			@RequestParam(required = false) String phone,

@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: login.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T14:58:26-05:00
+ * @Last modified time: 2017-07-17T16:00:56-05:00
  */
 
 export class LoginService {
@@ -53,7 +53,7 @@ export class LoginService {
 
     return this.$http({
       method: 'POST',
-      url: `${this.apiUrl}user/validate/user`,
+      url: `${this.apiUrl}/user/validate/user`,
       data: userObject
     }).then((response) => {
       if (response.data.username !== undefined) {
@@ -61,7 +61,7 @@ export class LoginService {
         this.localStorageService.set('password', password)
         return true
       }
-
+      this.$log.log(`Going in successful but failing ${response.data.username}`)
       return false
     }, (response) => {
       return false

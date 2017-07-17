@@ -1,15 +1,19 @@
 package com.cooksys.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,6 +38,9 @@ public class FlightUser {
 	private Credentials credentials;
 
 	private Boolean isActive = true;
+
+	@OneToMany(mappedBy = "bookedUser", fetch = FetchType.LAZY)
+	private Set<BookedFlight> bookedFlights = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -73,6 +80,14 @@ public class FlightUser {
 
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public Set<BookedFlight> getBookedFlights() {
+		return bookedFlights;
+	}
+
+	public void setBookedFlights(Set<BookedFlight> bookedFlights) {
+		this.bookedFlights = bookedFlights;
 	}
 
 	@Override
