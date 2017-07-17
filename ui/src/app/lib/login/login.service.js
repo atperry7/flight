@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: login.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T14:28:34-05:00
+ * @Last modified time: 2017-07-17T14:58:26-05:00
  */
 
 export class LoginService {
@@ -21,13 +21,7 @@ export class LoginService {
    * Returns true if the user is currently authenticated, else false
    */
   isAuthenticated () {
-    return this.$q((resolve, reject) => {
-      if (this.localStorageService.get('currentUser') !== null) {
-        resolve(true)
-      } else {
-        reject(false)
-      }
-    })
+    return this.localStorageService.get('currentUser') !== null
   }
 
   userDoesExists (user) {

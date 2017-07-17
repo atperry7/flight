@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: app.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T14:27:20-05:00
+ * @Last modified time: 2017-07-17T14:45:20-05:00
  */
 
 export const config =
@@ -12,7 +12,7 @@ export const config =
     'ngInject'
     $logProvider.debugEnabled(true)
     $locationProvider.html5Mode(true)
-    $urlRouterProvider.otherwise('/')
+    $urlRouterProvider.otherwise('/home')
 
     localStorageServiceProvider
       .setPrefix('flightApp')
