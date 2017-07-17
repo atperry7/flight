@@ -1,18 +1,49 @@
-import flightMap from './map/map.module'
-import apiUrl from './api.url'
-import appComponent from './app.component.js'
+/**
+ * @Author: Anthony Perry
+ * @Date:   2017-07-17T10:37:25-05:00
+ * @Email:  atperry7@gmail.com
+ * @Filename: app.module.js
+ * @Last modified by:   Anthony Perry
+ * @Last modified time: 2017-07-17T13:18:44-05:00
+ */
 
-export default
-  angular
-    .module('flight', [
-      'ngAria',
-      'ngAnimate',
-      'ngMaterial',
-      'ngMessages',
-      'ui.router',
+ import ngLocalStorage from 'angular-local-storage'
+ import ngUiRouter from 'angular-ui-router'
+ import ngMaterial from 'angular-material'
+ import ngAnimate from 'angular-animate'
+ import ngMessages from 'angular-messages'
+ import ngAria from 'angular-aria'
+ import ngMap from 'ngmap'
 
-      flightMap
-    ])
-    .constant('apiUrl', apiUrl)
-    .component('flightApp', appComponent)
-    .name
+ import apiUrl from 'app/api.url'
+ import flightMap from 'map/map.module'
+ import login from 'login/login.module'
+ import register from 'register/register.module'
+
+ import { flightHeader } from 'app/header.component'
+ import { flightApp } from 'app/app.component'
+ import { config } from 'app/app.config'
+ import { run } from 'app/app.run'
+
+ export default ng
+  .module('flight.app', [
+    // outside dependencies
+    ngLocalStorage,
+    ngUiRouter,
+    ngMaterial,
+    ngMessages,
+    ngAnimate,
+    ngAria,
+    ngMap,
+
+    // product dependencies
+    flightMap,
+    login,
+    register
+  ])
+  .component('flightApp', flightApp)
+  .component('flightHeader', flightHeader)
+  .constant('apiUrl', apiUrl)
+  .config(config)
+  .run(run)
+  .name

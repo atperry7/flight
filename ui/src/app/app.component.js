@@ -1,14 +1,26 @@
-import templateUrl from './app.component.html'
+/**
+ * @Author: Anthony Perry
+ * @Date:   2017-07-17T10:34:44-05:00
+ * @Email:  atperry7@gmail.com
+ * @Filename: app.component.js
+ * @Last modified by:   Anthony Perry
+ * @Last modified time: 2017-07-17T11:00:06-05:00
+ */
 
-/* @ngInject */
-class AppController {
+import 'app/app.styles'
+import templateUrl from 'app/app.template'
+
+const controller = class FlightAppController {
   constructor ($log) {
-    $log.debug('AppController is a go.')
+    'ngInject'
+
+    $log.debug('flight-app ...')
+
   }
 }
 
-export default {
+export const flightApp = {
+  controller,
   templateUrl,
-  controller: AppController,
-  controllerAs: '$appCtrl'
+  controllerAs: 'app'
 }
