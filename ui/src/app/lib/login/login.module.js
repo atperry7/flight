@@ -1,10 +1,10 @@
 /**
- * @Author: Christian Schmitt
- * @Date:   2017-07-10T11:10:40-05:00
- * @Email:  crschmit@gmail.com
+ * @Author: Anthony Perry
+ * @Date:   2017-07-17T11:10:40-05:00
+ * @Email:  atperry7@gmail.com
  * @Filename: login.module.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T11:46:22-05:00
+ * @Last modified time: 2017-07-17T14:28:15-05:00
  */
 
 import { LoginService } from 'login/login.service'

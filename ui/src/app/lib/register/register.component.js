@@ -1,10 +1,10 @@
 /**
  * @Author: Anthony Perry
- * @Date:   2017-07-10T16:44:18-05:00
+ * @Date:   2017-07-17T16:44:18-05:00
  * @Email:  atperry7@gmail.com
  * @Filename: register.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T11:47:03-05:00
+ * @Last modified time: 2017-07-17T14:29:31-05:00
  */
  import 'register/register.styles'
  import templateUrl from 'register/register.template'

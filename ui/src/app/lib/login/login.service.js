@@ -1,26 +1,33 @@
 /**
- * @Author: Christian Schmitt
- * @Date:   2017-07-10T11:10:40-05:00
- * @Email:  crschmit@gmail.com
+ * @Author: Anthony Perry
+ * @Date:   2017-07-17T11:10:40-05:00
+ * @Email:  atperry7@gmail.com
  * @Filename: login.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-13T16:28:48-05:00
+ * @Last modified time: 2017-07-17T14:28:34-05:00
  */
 
 export class LoginService {
-  constructor (localStorageService, $http, $log, $q) {
+  constructor (localStorageService, $http, $log, $q, apiUrl) {
     'ngInject'
     this.localStorageService = localStorageService
     this.$http = $http
     this.$log = $log
     this.$q = $q
+    this.apiUrl = apiUrl
   }
 
   /**
    * Returns true if the user is currently authenticated, else false
    */
   isAuthenticated () {
-    return this.localStorageService.get('currentUser') !== null
+    return this.$q((resolve, reject) => {
+      if (this.localStorageService.get('currentUser') !== null) {
+        resolve(true)
+      } else {
+        reject(false)
+      }
+    })
   }
 
   userDoesExists (user) {
@@ -52,12 +59,8 @@ export class LoginService {
 
     return this.$http({
       method: 'POST',
-      url: 'http://localhost:8888/user/users/validate/user',
-      data: userObject,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'content-type': 'application/json'
-      }
+      url: `${this.apiUrl}user/validate/user`,
+      data: userObject
     }).then((response) => {
       if (response.data.username !== undefined) {
         this.localStorageService.set('currentUser', response.data)

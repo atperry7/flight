@@ -1,10 +1,10 @@
 /**
- * @Author: Christian Schmitt
- * @Date:   2017-07-10T10:55:15-05:00
- * @Email:  crschmit@gmail.com
+ * @Author: Anthony Perry
+ * @Date:   2017-07-17T10:55:15-05:00
+ * @Email:  atperry7@gmail.com
  * @Filename: app.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T10:38:53-05:00
+ * @Last modified time: 2017-07-17T14:27:20-05:00
  */
 
 export const config =

@@ -1,10 +1,54 @@
 package com.cooksys.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cooksys.dto.FlightUserCredsOnlyDto;
+import com.cooksys.dto.FlightUserDto;
+import com.cooksys.mapper.FlightUserMapper;
+import com.cooksys.service.FlightUserService;
+
 @RestController
-@RequestMapping("users")
+@RequestMapping("user")
 public class FlightUserController {
 	
+	private FlightUserService uService;
+	private FlightUserMapper uMapper;
+
+	public FlightUserController(FlightUserService uService, FlightUserMapper uMapper) {
+		this.uService = uService;
+		this.uMapper = uMapper;
+	}
+	
+	@GetMapping("users")
+	public List<FlightUserDto> getAll() {
+		return uService.getAll().stream()
+				.map(uMapper::toFlightUserDto)
+				.collect(Collectors.toList());
+	}
+	
+	@PostMapping("validate/user")
+	public FlightUserDto validate(@RequestBody FlightUserCredsOnlyDto userCredsOnlyDto) {
+		return uMapper.toFlightUserDto(uService.validateUser(uMapper.toFlightUser(userCredsOnlyDto)));
+	}
+	
+	@PostMapping("create")
+	public FlightUserDto create(@RequestBody FlightUserCredsOnlyDto user,
+			@RequestParam(required = false) String firstName, 
+			@RequestParam(required = false) String lastName,
+			@RequestParam(required = false) String phone,
+			HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_CREATED);
+		return uMapper.toFlightUserDto(uService.save(uMapper.toFlightUser(user), firstName, lastName, phone));
+		
+	}
 }

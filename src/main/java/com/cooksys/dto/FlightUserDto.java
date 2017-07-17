@@ -2,8 +2,6 @@ package com.cooksys.dto;
 
 import java.util.Date;
 
-import com.cooksys.entity.UserProfile;
-
 public class FlightUserDto {
 	private String username;
 	private Date joined;
