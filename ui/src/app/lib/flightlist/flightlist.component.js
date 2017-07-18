@@ -4,14 +4,14 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightlist.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T08:53:44-05:00
+ * @Last modified time: 2017-07-18T14:16:50-05:00
  */
  import 'flightlist/flightlist.styles'
  import templateUrl from 'flightlist/flightlist.template'
 
  const controller =
    class FlightListController {
-     constructor ($log, flightListService, $state, loginService, $interval) {
+     constructor ($log, flightListService, $state, loginService, $interval, $stateParams) {
        'ngInject'
        this.service = flightListService
        this.$state = $state

@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T10:28:17-05:00
+ * @Last modified time: 2017-07-18T15:42:14-05:00
  */
  import 'flightdisplay/flightdisplay.styles'
  import templateUrl from 'flightdisplay/flightdisplay.template'
@@ -12,21 +12,20 @@
  const controller =
    class FlightDisplayController {
 
-     constructor ($log, flightDisplayService, $state, loginService, $map) {
+     constructor ($log, flightDisplayService, $state, loginService, $map, $stateParams) {
        'ngInject'
        this.service = flightDisplayService
-       this.$state = $state
-       this.loginService = loginService
-       this.$map = $map
+       this.$stateParams = $stateParams
+       $log.log(`Testing Params Display ${$stateParams.originData.city}`)
        $log.debug('Flight-flightdisplay ...')
      }
 
      origin () {
-       return this.service.getOrigin()
+       return this.$stateParams.origin.toLowerCase()
      }
 
      destination () {
-       return this.service.getDestination()
+       return this.$stateParams.destination.toLowerCase()
      }
 
    }

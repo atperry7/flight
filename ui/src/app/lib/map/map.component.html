@@ -1,10 +1,11 @@
 
-<div map-lazy-load="https://maps.google.com/maps/api/js">
+<div map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyAjVrveGOcQFlyoOSMitmNd8OU6wneX01s">
 	<ng-map center="{{$mapCtrl.center}}" zoom="{{$mapCtrl.zoom}}">
 	  <marker
-	    ng-repeat="$mapMarker in $mapCtrl.markers"
-	    position="{{$mapMarker.position}}">
+			ng-repeat="$mapCity in $mapCtrl.markers"
+	    position="{{$mapCity}}">
 	  </marker>
+
 	  <shape
 	    ng-repeat="$mapPath in $mapCtrl.paths"
 	    name="polyline"

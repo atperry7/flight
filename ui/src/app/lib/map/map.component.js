@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: map.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T10:55:43-05:00
+ * @Last modified time: 2017-07-18T14:20:17-05:00
  */
 
 import templateUrl from 'map/map.component.html'
@@ -15,45 +15,29 @@ class MapController {
   center = [35.5175, -86.5804]
   markers = []
   paths = []
+  origin = {}
+  destination = {}
 
   constructor ($map, locations, $log) {
     'ngInject'
     this.$map = $map
-    $log.log(`${this.getOrigins()} and ${this.destination}`)
-    // $map.uiGmapGoogleMapApiProvider.configure({
-    //   key: 'AIzaSyAjVrveGOcQFlyoOSMitmNd8OU6wneX01s'
-    // })
+    this.origin = $map.getOrigin()
+    this.destination = $map.getDestination()
 
-    // add markers from an angular constant
-    const { memphis, nashville, knoxville } = locations
-    const markers = [memphis, nashville, knoxville]
+    $log.log(`${this.destination.city}`)
 
-    markers.forEach(marker => this.addMarker(marker))
+    this.markers.push(this.origin.city)
+    this.markers.push(this.destination.city)
 
-    // add paths manually
-    const paths = [
-      [memphis, nashville, '#CC0099'],
-      [nashville, knoxville, '#AA1100']
-    ]
-
-    paths.forEach(args => this.addPath(...args))
-
+    this.addPath(this.origin, this.destination, '#FF3388')
     // add path from webservice
-    $map.getMarkerByCityName('Chattanooga')
-      .then(chattanooga => {
-        this.addPath(knoxville, chattanooga, '#FF3388')
-      })
+    // $map.getMarkerByCityName('Chattanooga')
+    //   .then(chattanooga => {
+    //     this.addPath(knoxville, chattanooga, '#FF3388')
+    //   })
   }
 
-  getOrigins () {
-    return this.origin
-  }
-
-  getDestinations () {
-    return this.destination
-  }
-
-  addMarker ({ latitude, longitude }) {
+  addMarker (latitude, longitude) {
     this.markers.push({
       position: `[${latitude}, ${longitude}]`
     })
@@ -76,7 +60,7 @@ export const flightMap = {
   templateUrl,
   controllerAs: '$mapCtrl',
   bindings: {
-    origin: '@',
-    destination: '@'
+    origin: '<',
+    destination: '<'
   }
 }
