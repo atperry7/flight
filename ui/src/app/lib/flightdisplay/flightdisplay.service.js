@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T08:26:29-05:00
+ * @Last modified time: 2017-07-18T10:29:16-05:00
  */
  export class FlightDisplayService {
    constructor ($http, apiUrl) {
@@ -31,4 +31,5 @@
    getDestination () {
      return this.destination
    }
+
  }

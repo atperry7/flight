@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: map.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T11:39:44-05:00
+ * @Last modified time: 2017-07-18T10:55:43-05:00
  */
 
 import templateUrl from 'map/map.component.html'
@@ -16,9 +16,13 @@ class MapController {
   markers = []
   paths = []
 
-  constructor ($map, locations) {
+  constructor ($map, locations, $log) {
     'ngInject'
     this.$map = $map
+    $log.log(`${this.getOrigins()} and ${this.destination}`)
+    // $map.uiGmapGoogleMapApiProvider.configure({
+    //   key: 'AIzaSyAjVrveGOcQFlyoOSMitmNd8OU6wneX01s'
+    // })
 
     // add markers from an angular constant
     const { memphis, nashville, knoxville } = locations
@@ -39,6 +43,14 @@ class MapController {
       .then(chattanooga => {
         this.addPath(knoxville, chattanooga, '#FF3388')
       })
+  }
+
+  getOrigins () {
+    return this.origin
+  }
+
+  getDestinations () {
+    return this.destination
   }
 
   addMarker ({ latitude, longitude }) {
@@ -62,5 +74,9 @@ class MapController {
 export const flightMap = {
   controller,
   templateUrl,
-  controllerAs: '$mapCtrl'
+  controllerAs: '$mapCtrl',
+  bindings: {
+    origin: '@',
+    destination: '@'
+  }
 }

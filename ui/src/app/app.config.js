@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: app.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T14:45:20-05:00
+ * @Last modified time: 2017-07-18T10:08:22-05:00
  */
 
 export const config =
