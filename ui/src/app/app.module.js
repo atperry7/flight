@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: app.module.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T17:49:34-05:00
+ * @Last modified time: 2017-07-17T19:46:31-05:00
  */
 
  import ngLocalStorage from 'angular-local-storage'
@@ -43,8 +43,8 @@
     flightMap,
     login,
     register,
-    flightLandingpage,
     flightList,
+    flightLandingpage,
     flightDisplay
   ])
   .component('flightApp', flightApp)

@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: landingpage.module.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T14:55:11-05:00
+ * @Last modified time: 2017-07-17T19:31:44-05:00
  */
  import { LandingPageService } from 'landingpage/landingpage.service'
  import { flightLandingpage } from 'landingpage/landingpage.component'

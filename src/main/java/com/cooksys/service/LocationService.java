@@ -24,6 +24,6 @@ public class LocationService {
 	}
 	
 	public Location get(String name) {
-		return repo.findByCity(name);
+		return repo.findByCityIgnoreCase(name);
 	}
 }

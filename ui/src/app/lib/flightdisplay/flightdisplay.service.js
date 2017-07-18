@@ -4,12 +4,31 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T17:49:58-05:00
+ * @Last modified time: 2017-07-18T08:26:29-05:00
  */
  export class FlightDisplayService {
    constructor ($http, apiUrl) {
      'ngInject'
      this.$http = $http
      this.apiUrl = apiUrl
+   }
+
+   origin = ''
+   destination = ''
+
+   setOrigin (origin) {
+     this.origin = origin
+   }
+
+   setDestination (destination) {
+     this.destination = destination
+   }
+
+   getOrigin () {
+     return this.origin
+   }
+
+   getDestination () {
+     return this.destination
    }
  }

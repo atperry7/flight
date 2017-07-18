@@ -4,18 +4,19 @@
  * @Email:  atperry7@gmail.com
  * @Filename: landingpage.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T15:47:18-05:00
+ * @Last modified time: 2017-07-17T21:31:33-05:00
  */
  import 'landingpage/landingpage.styles'
  import templateUrl from 'landingpage/landingpage.template'
 
  const controller =
    class FlightLandingPageController {
-     constructor ($log, landingpageService, $state, loginService) {
+     constructor ($log, landingpageService, $state, loginService, flightListService) {
        'ngInject'
        this.service = landingpageService
        this.$state = $state
        this.loginService = loginService
+       this.flightListService = flightListService
        $log.debug('Flight-landingpage ...')
      }
 
@@ -28,5 +29,8 @@
  export const flightLandingpage = {
    controller,
    templateUrl,
-   controllerAs: 'landingpage'
+   controllerAs: 'landingpage',
+   bindings: {
+     currentList: '='
+   }
  }

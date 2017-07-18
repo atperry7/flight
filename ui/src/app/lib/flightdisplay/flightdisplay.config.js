@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T17:46:29-05:00
+ * @Last modified time: 2017-07-18T08:27:18-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -14,8 +14,8 @@
        url: '/flight/{origin}/{destination}',
        component: 'flightDisplay',
        resolve: {
-         origin: ($transition$) => $transition$.params().origin,
-         destination: ($transition$) => $transition$.params().destination
+         origin: ($transition$, flightDisplayService) => flightDisplayService.setOrigin($transition$.params().origin),
+         destination: ($transition$, flightDisplayService) => flightDisplayService.setDestination($transition$.params().destination)
        }
      })
    }

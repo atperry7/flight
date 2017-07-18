@@ -1,1 +1,25 @@
 <landing-login ng-if="!landingpage.hasCurrentUser()"></landing-login>
+<div class="container">
+  <div class="jumbotron">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="well panel panel-info col-xs-12" ng-repeat="flight in landingpage.currentList">
+              <div class="panel-header">
+                <h2 class="panel-title" >
+                    Flight
+                </h2>
+              </div>
+            <div class="row panel-body">
+              <div class="well btn btn-default btn-lg col-xs-12" ui-sref="flight({ origin: flight.origin, destination: flight.destination })" ui-sref-active="active">
+                Origin: {{flight.origin}} <br>
+                Destination: {{flight.destination}} <br>
+                Flight Time: {{flight.flightTime}} <br>
+                Off set: {{flight.offset}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
