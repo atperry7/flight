@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T15:43:57-05:00
+ * @Last modified time: 2017-07-18T16:18:27-05:00
  */
  export class FlightDisplayService {
    constructor ($http, apiUrl) {
@@ -30,12 +30,41 @@
      this.originData = originData
    }
 
+   setDestinationData (destinationData) {
+     this.destinationData = destinationData
+   }
+
+   getOriginData () {
+     return this.originData
+   }
+
+   getDestinationData () {
+     return this.destinationData
+   }
+
    getOrigin () {
      return this.origin
    }
 
    getDestination () {
      return this.destination
+   }
+
+   getMarkerByCityName (name) {
+     return this.$http({
+       method: 'GET',
+       url: `${this.apiUrl}/location/name`,
+       params: { name: name }
+     }).then((response) => {
+       if (response.data !== undefined) {
+         return response.data
+       }
+       return false
+     }, (response) => {
+       return false
+     })
+       // .get(`${this.apiUrl}/location/name`, { params: { name } })
+       // .then(result => result.data)
    }
 
  }

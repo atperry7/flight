@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: displaymap.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T15:44:02-05:00
+ * @Last modified time: 2017-07-18T16:27:56-05:00
  */
  import templateUrl from 'flightDisplay/displaymap/displaymap.template'
 
@@ -17,8 +17,15 @@
      origin = {}
      destination = {}
 
-     constructor ($log, $stateParams) {
+     constructor ($log, flightDisplayService) {
        'ngInject'
+       this.service = flightDisplayService
+       $log.log(`Testing Params Map ${this.service.getOriginData().city}`)
+       this.origin = this.service.getOriginData()
+       this.destination = this.service.getDestinationData()
+       this.markers.push(this.origin.city)
+       this.markers.push(this.destination.city)
+       this.addPath(this.origin, this.destination, '#ff0000')
      }
 
      addPath (a, b, color) {

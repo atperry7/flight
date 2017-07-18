@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T15:42:14-05:00
+ * @Last modified time: 2017-07-18T16:34:40-05:00
  */
  import 'flightdisplay/flightdisplay.styles'
  import templateUrl from 'flightdisplay/flightdisplay.template'
@@ -16,7 +16,6 @@
        'ngInject'
        this.service = flightDisplayService
        this.$stateParams = $stateParams
-       $log.log(`Testing Params Display ${$stateParams.originData.city}`)
        $log.debug('Flight-flightdisplay ...')
      }
 

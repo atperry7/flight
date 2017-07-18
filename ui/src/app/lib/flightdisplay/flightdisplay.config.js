@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T15:48:36-05:00
+ * @Last modified time: 2017-07-18T16:17:52-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -14,15 +14,15 @@
        url: '/flight/{origin}/{destination}',
        component: 'flightDisplay',
        resolve: {
-         originData: ($transition$, $map) => $map.getMarkerByCityName($transition$.params().origin).then(data => data),
-         destinationData: ($transition$, $map) => $map.getMarkerByCityName($transition$.params().destination).then(data => data),
+         originData: ($transition$, flightDisplayService) => flightDisplayService.getMarkerByCityName($transition$.params().origin).then(data => flightDisplayService.setOriginData(data)),
+         destinationData: ($transition$, flightDisplayService) => flightDisplayService.getMarkerByCityName($transition$.params().destination).then(data => flightDisplayService.setDestinationData(data)),
          origin: ($transition$, flightDisplayService) => flightDisplayService.setOrigin($transition$.params().origin),
          destination: ($transition$, flightDisplayService) => flightDisplayService.setDestination($transition$.params().destination)
        }
      })
 
      $stateProvider.state({
-       name: 'flight.map',
+       name: 'flight.displaymap',
        component: 'flightDisplayMap'
      })
    }
