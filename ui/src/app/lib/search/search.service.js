@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: search.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-19T09:13:07-05:00
+ * @Last modified time: 2017-07-19T13:43:42-05:00
  */
  export class SearchService {
    constructor ($http, apiUrl, localStorageService, $stateParams, $log, $interval, $state) {
@@ -22,6 +22,14 @@
    intervals = []
    origin = ''
    destination = ''
+
+   getOrigin () {
+     return this.origin
+   }
+
+   getDestination () {
+     return this.destination
+   }
 
    setOrigin (from) {
      this.origin = from
@@ -60,4 +68,18 @@
      }
    }
 
+   searchRequest (origin, destination) {
+     return this.$http({
+       method: 'GET',
+       url: `${this.apiUrl}/flights/search`,
+       params: {origin: origin, destination: destination}
+     }).then((response) => {
+       if (response.data !== undefined) {
+         return response.data
+       }
+       return false
+     }, (response) => {
+       return false
+     })
+   }
  }

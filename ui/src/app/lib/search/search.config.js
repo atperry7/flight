@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: search.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-19T09:13:59-05:00
+ * @Last modified time: 2017-07-19T13:54:52-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -13,7 +13,7 @@
        name: 'search',
        url: '/search',
        onEnter: (searchService) => searchService.createLiveReload(),
-       onExit: (searchService) => searchService.clearIntervalList(), 
+       onExit: (searchService) => searchService.clearIntervalList(),
        component: 'flightSearch'
      })
 
@@ -25,7 +25,8 @@
        resolve: {
          to: (searchService, $transition$) => searchService.setDestination($transition$.params().to),
          from: (searchService, $transition$) => searchService.setOrigin($transition$.params().from),
-         currentList: (landingpageService, searchService) => landingpageService.getCurrentList().then(data => searchService.setCurrentList(data))
+         currentList: (landingpageService, searchService) => landingpageService.getCurrentList().then(data => searchService.setCurrentList(data)),
+         searchList: ($transition$, searchService) => searchService.searchRequest($transition$.params().from, $transition$.params().to)
        }
      })
    }

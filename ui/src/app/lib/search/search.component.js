@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: search.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T21:36:04-05:00
+ * @Last modified time: 2017-07-19T09:23:51-05:00
  */
  import 'search/search.styles'
  import templateUrl from 'search/search.template'
@@ -22,7 +22,6 @@
      hasCurrentUser () {
        return this.loginService.isAuthenticated()
      }
-
    }
 
  export const flightSearch = {

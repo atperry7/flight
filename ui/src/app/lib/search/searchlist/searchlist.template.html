@@ -2,27 +2,34 @@
   <h1>Search Results</h1>
   <div class="container-fluid">
     <div class="row">
-      <h3 ng-if="searchList.getList().length === 0">No results found...</h3>
-      <div class="well panel panel-info col-xs-12" ng-repeat="flight in searchList.getList()">
-          <div class="panel-header">
-            <h2 class="panel-title" >
-            </h2>
-          </div>
-        <div class="row panel-body">
-          <div class="well btn btn-default btn-lg col-xs-12" ui-sref="flight({ origin: flight.origin, destination: flight.destination, offset: flight.offset, flightTime: flight.flightTime })" ui-sref-active="active">
-            <div class="col-md-6">
-              Flight <br>
-              Origin: {{flight.origin}} <br>
-              Destination: {{flight.destination}} <br>
-              Flight Time: {{flight.flightTime}} <br>
-              Off set: {{flight.offset}}
+      <div class="col-md-6 well"><h2>From: {{searchList.getOrigin()}}</h2></div>
+      <div class="col-md-6 well"><h2>To: {{searchList.getDestination()}}</h2></div>
+      <h3 class="col-md-12" ng-if="searchList.getList().length === 0">No results found...</h3>
+      <div ng-repeat="flights in searchList.searchList">
+
+        <div class="well panel panel-info col-xs-12" ng-repeat="flight in flights">
+
+            <div class="panel-header">
+              <h2 class="panel-title" >
+                Itinerary for Flight
+              </h2>
             </div>
-            <div class="col-md 6">
-              Layover
+
+          <div class="row panel-body">
+            <div class="well btn btn-default btn-lg col-xs-12" ui-sref="flight({ origin: searchList.getOrigin(), destination: searchList.getDestination(), flight: flight })" ui-sref-active="active">
+              <div class="col-md-3" ng-repeat="thisflight in flight">
+                Flight <br>
+                Origin: {{thisflight.origin}} <br>
+                Destination: {{thisflight.destination}} <br>
+                Flight Time: {{thisflight.flightTime}} <br>
+                Off set: {{thisflight.offset}}
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+
+        </div> <!-- END OF PANEL -->
+
+      </div> <!-- NG REPEAT END -->
     </div>
   </div>
 </div>

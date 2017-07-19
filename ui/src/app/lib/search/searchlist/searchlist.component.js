@@ -4,8 +4,9 @@
  * @Email:  atperry7@gmail.com
  * @Filename: searchlist.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T22:40:35-05:00
+ * @Last modified time: 2017-07-19T13:59:31-05:00
  */
+ import 'search/search.styles'
  import templateUrl from 'search/searchlist/searchlist.template'
 
  const controller =
@@ -26,10 +27,21 @@
        return this.service.getCurrentList()
      }
 
+     getOrigin () {
+       return this.service.getOrigin()
+     }
+
+     getDestination () {
+       return this.service.getDestination()
+     }
+
    }
 
  export const flightSearchList = {
    controller,
    templateUrl,
-   controllerAs: 'searchList'
+   controllerAs: 'searchList',
+   bindings: {
+     searchList: '<'
+   }
  }

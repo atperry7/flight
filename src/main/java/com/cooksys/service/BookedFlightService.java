@@ -8,6 +8,7 @@ import com.cooksys.dto.FlightUserCredsOnlyDto;
 import com.cooksys.entity.BookedFlight;
 import com.cooksys.entity.FlightUser;
 import com.cooksys.mapper.FlightUserMapper;
+import com.cooksys.pojo.Flight;
 import com.cooksys.repository.BookedFlightRepository;
 
 @Service
@@ -28,7 +29,7 @@ public class BookedFlightService {
 	}
 
 	public boolean createFlight(FlightUserCredsOnlyDto creds, String flightOrigin, String flightDestination,
-			String offSet, String flightTime) {
+			List<Flight> flights) {
 		BookedFlight bookedFlight = new BookedFlight();
 		
 		FlightUser flightUser = flightUserService.validateUser(fMapper.toFlightUser(creds));
@@ -37,8 +38,6 @@ public class BookedFlightService {
 			bookedFlight.setBookedUser(flightUser);
 			bookedFlight.setOrigin(flightOrigin);
 			bookedFlight.setDestination(flightDestination);
-			bookedFlight.setOffSetTime(Integer.valueOf(offSet));
-			bookedFlight.setFlightTime(Integer.valueOf(flightTime));
 			
 			bRepository.save(bookedFlight);
 			return true;

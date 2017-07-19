@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: displaymap.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T20:14:40-05:00
+ * @Last modified time: 2017-07-19T14:37:42-05:00
  */
  import templateUrl from 'flightDisplay/displaymap/displaymap.template'
 
@@ -23,6 +23,11 @@
        this.$stateParams = $stateParams
        this.service = flightDisplayService
        $log.log(`Testing Params Map ${this.service.getOriginData().city}`)
+       if (!ng.equals($stateParams.flight, {})) {
+         for (let test of $stateParams.flight) {
+           $log.log(`Testing of flight params :: ${test}, ${test.origin}`)
+         }
+       }
        this.origin = this.service.getOriginData()
        this.destination = this.service.getDestinationData()
        this.markers.push(this.origin.city)

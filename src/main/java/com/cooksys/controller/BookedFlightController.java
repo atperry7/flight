@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cooksys.dto.BookedFlightDto;
 import com.cooksys.dto.FlightUserCredsOnlyDto;
 import com.cooksys.mapper.BookedFlightMapper;
+import com.cooksys.pojo.Flight;
 import com.cooksys.service.BookedFlightService;
 
 @RestController
@@ -33,14 +34,17 @@ public class BookedFlightController {
 	}
 	
 	@PostMapping("reservation")
-	public boolean reserveFlight(@RequestBody FlightUserCredsOnlyDto creds,
+	public boolean reserveFlight(@RequestBody(required = true) FlightUserCredsOnlyDto creds,
+			@RequestBody List<Flight> flights,
 			@RequestParam(required = true) String flightOrigin,
-			@RequestParam(required = true) String flightDestination,
-			@RequestParam(required = true) String offSet,
-			@RequestParam(required = true) String flightTime,
-			@RequestParam(required = false) String layover
+			@RequestParam(required = true) String flightDestination
 			) {
-		return bService.createFlight(creds, flightOrigin, flightDestination, offSet, flightTime);
+		return bService.createFlight(creds, flightOrigin, flightDestination, flights);
+	}
+	
+	@PostMapping("reservation/layover")
+	public boolean reserveFlightLayover(@RequestBody List<Flight> flights) {
+		return true;
 	}
 
 }
