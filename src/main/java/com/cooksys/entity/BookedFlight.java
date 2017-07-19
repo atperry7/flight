@@ -94,12 +94,12 @@ public class BookedFlight {
 		this.flightTime = flightTime;
 	}
 
-	public Integer getOffset() {
+	public Integer getOffSetTime() {
 		return offSetTime;
 	}
 
-	public void setOffset(Integer offset) {
-		this.offSetTime = offset;
+	public void setOffSetTime(Integer offSetTime) {
+		this.offSetTime = offSetTime;
 	}
 
 	public Set<BookedFlight> getLayovers() {

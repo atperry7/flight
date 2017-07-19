@@ -8,14 +8,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" ui-sref="home" ui-sref-activate="activate">Cooksys Flights</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Link</a></li>
+        <li><a ui-sref="list" ui-sref-active="active">Previous Flights</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a ng-click="header.loggingOut()" ui-sref="home" ui-sref-active="active">Logout</a></li>

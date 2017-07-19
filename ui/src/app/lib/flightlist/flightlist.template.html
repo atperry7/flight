@@ -1,5 +1,6 @@
 <div class="container">
   <div class="jumbotron">
+    <h1>Previous Flights</h1>
       <div class="container-fluid">
         <div class="row">
           <div class="well panel panel-info col-xs-12" ng-repeat="flight in flightList.currentList">
@@ -9,11 +10,11 @@
                 </h2>
               </div>
             <div class="row panel-body">
-              <div class="well btn btn-default btn-lg col-xs-12" ui-sref="flight({ origin: flight.origin, destination: flight.destination })" ui-sref-active="active">
+              <div class="well btn btn-default btn-lg col-xs-12" ui-sref="map({ origin: flight.origin, destination: flight.destination })" ui-sref-active="active">
                 Origin: {{flight.origin}} <br>
                 Destination: {{flight.destination}} <br>
                 Flight Time: {{flight.flightTime}} <br>
-                Off set: {{flight.offset}}
+                Off set: {{flight.offSetTime}}
               </div>
             </div>
           </div>

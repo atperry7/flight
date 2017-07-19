@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T20:29:33-05:00
+ * @Last modified time: 2017-07-18T20:34:27-05:00
  */
  export class FlightDisplayService {
    constructor ($http, apiUrl, localStorageService, $log) {
@@ -81,7 +81,8 @@
        params: { flightOrigin: origin, flightDestination: destination, offSet: offset, flightTime: flightTime },
        data: credentials
      }).then((response) => {
-       if (response.data !== true) {
+       this.$log.log(`${response.data}`)
+       if (response.data === true) {
          return 'Successfully Booked Flight'
        }
        return 'Unable to book flight, try again later.'

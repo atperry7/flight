@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="jumbotron">
+    <form>
+      <div class="row">
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">From: </span>
+          <input type="text" class="form-control" placeholder="Starting City" aria-describedby="sizing-addon2" ng-model="search.fromCity" required="true">
+          <span class="input-group-addon" id="sizing-addon2">To: </span>
+          <input type="text" class="form-control" placeholder="Ending City" aria-describedby="sizing-addon2" ng-model="search.toCity" required="true">
+        </div>
+      </div>
+      <div class="row">
+        <span class="col-md-12"><button class="twtr-btn" ng-click="search.find()">Search</button></span>
+      </div>
+    </div>
+  </form>
+</div>

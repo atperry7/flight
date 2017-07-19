@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: app.module.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T19:46:31-05:00
+ * @Last modified time: 2017-07-18T21:28:53-05:00
  */
 
  import ngLocalStorage from 'angular-local-storage'
@@ -22,6 +22,7 @@
  import flightLandingpage from 'landingpage/landingpage.module'
  import flightList from 'flightlist/flightlist.module'
  import flightDisplay from 'flightdisplay/flightdisplay.module'
+ import flightSearch from 'search/search.module'
 
  import { flightHeader } from 'app/header.component'
  import { flightApp } from 'app/app.component'
@@ -45,7 +46,8 @@
     register,
     flightList,
     flightLandingpage,
-    flightDisplay
+    flightDisplay,
+    flightSearch
   ])
   .component('flightApp', flightApp)
   .component('flightHeader', flightHeader)

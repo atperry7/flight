@@ -37,7 +37,7 @@ public class BookedFlightService {
 			bookedFlight.setBookedUser(flightUser);
 			bookedFlight.setOrigin(flightOrigin);
 			bookedFlight.setDestination(flightDestination);
-			bookedFlight.setOffset(Integer.valueOf(offSet));
+			bookedFlight.setOffSetTime(Integer.valueOf(offSet));
 			bookedFlight.setFlightTime(Integer.valueOf(flightTime));
 			
 			bRepository.save(bookedFlight);

@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: landingpage.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T16:40:47-05:00
+ * @Last modified time: 2017-07-18T21:11:34-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -14,7 +14,7 @@
        url: '/home',
        component: 'flightLandingpage',
        resolve: {
-         currentList: (flightListService) => flightListService.getCurrentList()
+         currentList: (landingpageService) => landingpageService.getCurrentList()
        }
      })
    }

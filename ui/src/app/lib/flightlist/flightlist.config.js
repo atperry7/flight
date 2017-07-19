@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightlist.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T08:54:59-05:00
+ * @Last modified time: 2017-07-18T20:37:41-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -12,6 +12,7 @@
      $stateProvider.state({
        name: 'list',
        url: '/list',
+       data: { requiresAuth: true },
        component: 'flightList',
        resolve: {
          currentList: (flightListService) => flightListService.getCurrentList()

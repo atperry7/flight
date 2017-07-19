@@ -1,11 +1,14 @@
 package com.cooksys.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
+import com.cooksys.entity.BookedFlight;
 import com.cooksys.entity.FlightUser;
 import com.cooksys.repository.FlightUserRepository;
+import com.cooksys.exception.EntityNotFoundException;
 import com.cooksys.exception.UsernameExistsException;
 
 @Service
@@ -53,6 +56,16 @@ public class FlightUserService {
 
 	private boolean exists(String username) {
 		return uRepository.findByCredentials_UsernameEquals(username) != null;
+	}
+	
+	public Set<BookedFlight> getBookedFlights(String username) {
+		FlightUser flightUser = uRepository.findByCredentials_UsernameEquals(username);
+		
+		if (flightUser != null && flightUser.getIsActive().equals(true)) {
+			return flightUser.getBookedFlights();
+		}
+		
+		throw new EntityNotFoundException();
 	}
 	
 }

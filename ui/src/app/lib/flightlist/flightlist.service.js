@@ -4,22 +4,21 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightlist.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T08:53:18-05:00
+ * @Last modified time: 2017-07-18T21:00:57-05:00
  */
  export class FlightListService {
-   constructor ($http, apiUrl, $interval, $state, $log) {
+   constructor ($http, apiUrl, $log, localStorageService) {
      'ngInject'
+     this.localStorageService = localStorageService
      this.$http = $http
      this.apiUrl = apiUrl
-     this.$interval = $interval
-     this.$state = $state
      this.$log = $log
    }
 
    getCurrentList () {
      return this.$http({
        method: 'GET',
-       url: `${this.apiUrl}/flights`
+       url: `${this.apiUrl}/user/bookedflights/${this.localStorageService.get('currentUser').username}`
      }).then((response) => {
        if (response.data !== undefined) {
          return response.data
