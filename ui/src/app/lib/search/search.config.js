@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: search.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T22:55:03-05:00
+ * @Last modified time: 2017-07-19T09:13:59-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -12,6 +12,8 @@
      $stateProvider.state({
        name: 'search',
        url: '/search',
+       onEnter: (searchService) => searchService.createLiveReload(),
+       onExit: (searchService) => searchService.clearIntervalList(), 
        component: 'flightSearch'
      })
 

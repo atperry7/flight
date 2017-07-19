@@ -4,15 +4,33 @@
  * @Email:  atperry7@gmail.com
  * @Filename: landingpage.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T21:10:54-05:00
+ * @Last modified time: 2017-07-19T09:04:00-05:00
  */
 
  export class LandingPageService {
-   constructor ($http, apiUrl, localStorageService) {
+   constructor ($http, apiUrl, localStorageService, $interval, $state, $log) {
      'ngInject'
      this.$http = $http
      this.apiUrl = apiUrl
      this.localStorageService = localStorageService
+     this.$interval = $interval
+     this.$state = $state
+     this.$log = $log
+   }
+
+   intervals = []
+
+   createLiveReload () {
+     this.intervals.push(this.$interval(() => {
+       this.$log.log('Reload Fired')
+       this.$state.reload()
+     }, 30000))
+   }
+
+   clearIntervalList () {
+     for (let interval of this.intervals) {
+       this.$interval.cancel(interval)
+     }
    }
 
    getCurrentList () {

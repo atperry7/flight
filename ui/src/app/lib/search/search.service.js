@@ -4,19 +4,22 @@
  * @Email:  atperry7@gmail.com
  * @Filename: search.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T22:59:10-05:00
+ * @Last modified time: 2017-07-19T09:13:07-05:00
  */
  export class SearchService {
-   constructor ($http, apiUrl, localStorageService, $stateParams, $log) {
+   constructor ($http, apiUrl, localStorageService, $stateParams, $log, $interval, $state) {
      'ngInject'
      this.$log = $log
      this.$stateParams = $stateParams
      this.$http = $http
      this.apiUrl = apiUrl
      this.localStorageService = localStorageService
+     this.$interval = $interval
+     this.$state = $state
    }
 
    currentList = []
+   intervals = []
    origin = ''
    destination = ''
 
@@ -42,6 +45,19 @@
 
    getCurrentList () {
      return this.currentList
+   }
+
+   createLiveReload () {
+     this.intervals.push(this.$interval(() => {
+       this.$log.log('Reload Fired')
+       this.$state.reload('search', {to: this.destination, from: this.origin})
+     }, 30000))
+   }
+
+   clearIntervalList () {
+     for (let interval of this.intervals) {
+       this.$interval.cancel(interval)
+     }
    }
 
  }
