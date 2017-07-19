@@ -1,7 +1,8 @@
 <landing-login ng-if="!landingpage.hasCurrentUser()"></landing-login>
-<flight-search></flight-search>
+<flight-search ng-if="landingpage.hasCurrentUser()"></flight-search>
 <div class="container">
   <div class="jumbotron">
+    <h1>Current Flights</h1>
       <div class="container-fluid">
         <div class="row">
           <div class="well panel panel-info col-xs-12" ng-repeat="flight in landingpage.currentList">
