@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: loginhook.run.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-17T14:28:58-05:00
+ * @Last modified time: 2017-07-18T16:39:28-05:00
  */
 
  export const run =
@@ -20,7 +20,7 @@
        let $state = transition.router.stateService
        if (!loginService.isAuthenticated()) {
          alert('You must login first.')
-         return $state.target('feed', { username: '' }, { location: false })
+         return $state.target('home', { username: '' }, { location: false })
        }
      }
 

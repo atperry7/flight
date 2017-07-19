@@ -1,5 +1,7 @@
 <div class="jumbotron">
   <h1>{{flightDisplay.origin()}} : {{flightDisplay.destination()}}</h1>
+  <div class="btn btn-default btn-lg" ng-click="flightDisplay.reservation()">Book Flight!</div>
+  <span>{{flightDisplay.message}}</span>
 </div>
 
 <flight-display-map></flight-display-map>

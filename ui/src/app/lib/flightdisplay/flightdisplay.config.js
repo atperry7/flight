@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T16:17:52-05:00
+ * @Last modified time: 2017-07-18T16:42:34-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -12,6 +12,8 @@
      $stateProvider.state({
        name: 'flight',
        url: '/flight/{origin}/{destination}',
+       params: { offset: 0, flightTime: 0 },
+       data: { requiresAuth: true },
        component: 'flightDisplay',
        resolve: {
          originData: ($transition$, flightDisplayService) => flightDisplayService.getMarkerByCityName($transition$.params().origin).then(data => flightDisplayService.setOriginData(data)),

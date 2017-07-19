@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T16:34:40-05:00
+ * @Last modified time: 2017-07-18T20:20:02-05:00
  */
  import 'flightdisplay/flightdisplay.styles'
  import templateUrl from 'flightdisplay/flightdisplay.template'
@@ -12,7 +12,7 @@
  const controller =
    class FlightDisplayController {
 
-     constructor ($log, flightDisplayService, $state, loginService, $map, $stateParams) {
+     constructor ($log, flightDisplayService, $stateParams) {
        'ngInject'
        this.service = flightDisplayService
        this.$stateParams = $stateParams
@@ -27,10 +27,18 @@
        return this.$stateParams.destination.toLowerCase()
      }
 
+     reservation () {
+       this.service.bookFlight(this.origin(), this.destination(), this.$stateParams.offset, this.$stateParams.flightTime)
+                                            .then(data => { this.message = data })
+     }
+
    }
 
  export const flightDisplay = {
    controller,
    templateUrl,
-   controllerAs: 'flightDisplay'
+   controllerAs: 'flightDisplay',
+   bindings: {
+     message: '@'
+   }
  }

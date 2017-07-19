@@ -4,13 +4,15 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T16:18:27-05:00
+ * @Last modified time: 2017-07-18T20:29:33-05:00
  */
  export class FlightDisplayService {
-   constructor ($http, apiUrl) {
+   constructor ($http, apiUrl, localStorageService, $log) {
      'ngInject'
+     this.$log = $log
      this.$http = $http
      this.apiUrl = apiUrl
+     this.localStorageService = localStorageService
    }
 
    origin = ''
@@ -65,6 +67,27 @@
      })
        // .get(`${this.apiUrl}/location/name`, { params: { name } })
        // .then(result => result.data)
+   }
+
+   bookFlight (origin, destination, offset, flightTime) {
+     let user = this.localStorageService.get('currentUser')
+     let password = this.localStorageService.get('password')
+     this.$log.log(`Username Check: ${user.username} :: Password Check ${password}`)
+     let credentials = { credentials: { username: user.username, password: password } }
+
+     return this.$http({
+       method: 'POST',
+       url: `${this.apiUrl}/reserve/reservation`,
+       params: { flightOrigin: origin, flightDestination: destination, offSet: offset, flightTime: flightTime },
+       data: credentials
+     }).then((response) => {
+       if (response.data !== true) {
+         return 'Successfully Booked Flight'
+       }
+       return 'Unable to book flight, try again later.'
+     }, (response) => {
+       return 'Unable to book flight, try again later.'
+     })
    }
 
  }

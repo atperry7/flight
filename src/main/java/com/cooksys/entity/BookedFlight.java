@@ -38,10 +38,10 @@ public class BookedFlight {
 	private String destination;
 
 	// How many hours flight is in the air
-	private long flightTime;
+	private Integer flightTime;
 
 	// How many hours after the start of the day until the flight takes off
-	private long offset;
+	private Integer offSetTime;
 
 	@ManyToMany
 	private Set<BookedFlight> layovers = new HashSet<>();
@@ -86,20 +86,20 @@ public class BookedFlight {
 		this.destination = destination;
 	}
 
-	public long getFlightTime() {
+	public Integer getFlightTime() {
 		return flightTime;
 	}
 
-	public void setFlightTime(long flightTime) {
+	public void setFlightTime(Integer flightTime) {
 		this.flightTime = flightTime;
 	}
 
-	public long getOffset() {
-		return offset;
+	public Integer getOffset() {
+		return offSetTime;
 	}
 
-	public void setOffset(long offset) {
-		this.offset = offset;
+	public void setOffset(Integer offset) {
+		this.offSetTime = offset;
 	}
 
 	public Set<BookedFlight> getLayovers() {
