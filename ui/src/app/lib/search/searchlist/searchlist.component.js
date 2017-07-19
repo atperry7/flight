@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: searchlist.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T21:52:51-05:00
+ * @Last modified time: 2017-07-18T22:40:35-05:00
  */
  import templateUrl from 'search/searchlist/searchlist.template'
 
@@ -15,11 +15,15 @@
        this.service = searchService
        this.$state = $state
        this.loginService = loginService
-       $log.debug('Flight-searchlist ...')
+       $log.log('Flight-searchlist ...')
      }
 
      hasCurrentUser () {
        return this.loginService.isAuthenticated()
+     }
+
+     getList () {
+       return this.service.getCurrentList()
      }
 
    }
@@ -27,9 +31,5 @@
  export const flightSearchList = {
    controller,
    templateUrl,
-   controllerAs: 'searchList',
-   bindings: {
-     toCity: '<',
-     fromCity: '<'
-   }
+   controllerAs: 'searchList'
  }

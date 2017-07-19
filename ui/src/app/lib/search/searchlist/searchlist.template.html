@@ -1,1 +1,22 @@
-<h1>TEST</h1>
+<div class="jumotron">
+  <h1>Search Results</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <h3 ng-if="searchList.getList().length === 0">No results found...</h3>
+      <div class="well panel panel-info col-xs-12" ng-repeat="flight in searchList.getList()">
+          <div class="panel-header">
+            <h2 class="panel-title" >
+            </h2>
+          </div>
+        <div class="row panel-body">
+          <div class="well btn btn-default btn-lg col-xs-12" ui-sref="flight({ origin: flight.origin, destination: flight.destination, offset: flight.offset, flightTime: flight.flightTime })" ui-sref-active="active">
+            Origin: {{flight.origin}} <br>
+            Destination: {{flight.destination}} <br>
+            Flight Time: {{flight.flightTime}} <br>
+            Off set: {{flight.offset}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

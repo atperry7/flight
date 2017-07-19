@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: search.module.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T21:50:59-05:00
+ * @Last modified time: 2017-07-18T22:00:00-05:00
  */
 
  import { SearchService } from 'search/search.service'

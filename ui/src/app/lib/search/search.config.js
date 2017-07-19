@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: search.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T21:50:15-05:00
+ * @Last modified time: 2017-07-18T22:55:03-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -18,6 +18,12 @@
      $stateProvider.state({
        name: 'search.list',
        url: '/',
-       component: 'flightSearchList'
+       params: {to: 'none', from: 'none'},
+       component: 'flightSearchList',
+       resolve: {
+         to: (searchService, $transition$) => searchService.setDestination($transition$.params().to),
+         from: (searchService, $transition$) => searchService.setOrigin($transition$.params().from),
+         currentList: (landingpageService, searchService) => landingpageService.getCurrentList().then(data => searchService.setCurrentList(data))
+       }
      })
    }
