@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-19T20:32:31-05:00
+ * @Last modified time: 2017-07-19T22:42:15-05:00
  */
  export class FlightDisplayService {
    constructor ($http, apiUrl, localStorageService, $log, $q) {
@@ -20,11 +20,6 @@
    destination = ''
    originData = {}
    destinationData = {}
-   paths = []
-
-   getPaths () {
-     return this.paths
-   }
 
    setOrigin (origin) {
      this.origin = origin

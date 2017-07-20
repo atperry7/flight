@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: map.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-19T22:27:46-05:00
+ * @Last modified time: 2017-07-19T22:47:32-05:00
  */
 
 import templateUrl from 'map/map.component.html'
@@ -17,7 +17,7 @@ class MapController {
   paths = []
   origin = {}
   destination = {}
-
+  totalFlightTime = 0
   colorArray = ['#053787', '#680363', '#ff0000']
 
   constructor ($log, flightDisplayService, $stateParams, $q) {
@@ -34,6 +34,8 @@ class MapController {
       if (!this.markers.includes(cities.destination)) {
         this.markers.push(cities.destination)
       }
+
+      this.totalFlightTime = this.totalFlightTime + cities.flightTime
     }
 
     if (this.markers.length <= 2) {
@@ -54,6 +56,10 @@ class MapController {
 
   getPathForMap () {
     return this.service.getPaths()
+  }
+
+  getTotalFlightTime () {
+    return this.totalFlightTime
   }
 
   addPath (a, b, color) {

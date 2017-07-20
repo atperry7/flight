@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: displaymap.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-19T19:38:14-05:00
+ * @Last modified time: 2017-07-19T22:50:13-05:00
  */
  import templateUrl from 'flightDisplay/displaymap/displaymap.template'
 
@@ -13,6 +13,8 @@
      zoom = 7
      center = [35.5175, -86.5804]
      markers = []
+
+     totalFlightTime = 0
 
      origin = {}
      destination = {}
@@ -35,6 +37,8 @@
          if (!this.markers.includes(cities.destination)) {
            this.markers.push(cities.destination)
          }
+
+         this.totalFlightTime = this.totalFlightTime + cities.flightTime
        }
 
        if (this.markers.length <= 2) {
@@ -65,6 +69,10 @@
         //  this.markers.push(this.destination.city)
         //  this.addPath(this.origin, this.destination, '#ff0000')
       //  }
+     }
+
+     getFlightTime () {
+       return this.totalFlightTime
      }
 
      getTheCitiesData () {

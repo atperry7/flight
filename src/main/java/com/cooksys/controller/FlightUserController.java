@@ -61,8 +61,8 @@ public class FlightUserController {
 	@GetMapping("bookedflights/{username}")
 	public List<BookedFlightDto> getBookedFlights(@PathVariable String username) {
 		return uService.getBookedFlights(username).stream()
-				.map(bMapper::toBookedFlightDto)
 				.sorted((b1, b2) -> b2.getDateBooked().compareTo(b1.getDateBooked()))
+				.map(bMapper::toBookedFlightDto)
 				.collect(Collectors.toList());
 	}
 }
