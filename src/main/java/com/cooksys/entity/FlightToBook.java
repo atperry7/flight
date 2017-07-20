@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,8 +41,8 @@ public class FlightToBook {
 	// How many hours after the start of the day until the flight takes off
 	private Integer offSetTime;
 
-	@OneToMany(mappedBy = "flights", fetch = FetchType.LAZY)
-	private Set<BookedFlight> bookedFlights = new HashSet<>();
+	@ManyToOne
+	private BookedFlight bookedFlight;
 
 	public Integer getId() {
 		return id;
@@ -90,12 +92,12 @@ public class FlightToBook {
 		this.offSetTime = offSetTime;
 	}
 
-	public Set<BookedFlight> getBookedFlights() {
-		return bookedFlights;
+	public BookedFlight getBookedFlight() {
+		return bookedFlight;
 	}
 
-	public void setBookedFlights(Set<BookedFlight> bookedFlights) {
-		this.bookedFlights = bookedFlights;
+	public void setBookedFlight(BookedFlight bookedFlight) {
+		this.bookedFlight = bookedFlight;
 	}
 
 	@Override

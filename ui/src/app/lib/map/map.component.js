@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: map.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-18T14:20:17-05:00
+ * @Last modified time: 2017-07-19T22:27:46-05:00
  */
 
 import templateUrl from 'map/map.component.html'
@@ -18,29 +18,42 @@ class MapController {
   origin = {}
   destination = {}
 
-  constructor ($map, locations, $log) {
+  colorArray = ['#053787', '#680363', '#ff0000']
+
+  constructor ($log, flightDisplayService, $stateParams, $q) {
     'ngInject'
-    this.$map = $map
-    this.origin = $map.getOrigin()
-    this.destination = $map.getDestination()
+    this.$log = $log
+    this.$stateParams = $stateParams
+    this.service = flightDisplayService
 
-    $log.log(`${this.destination.city}`)
+    for (let cities of this.$stateParams.flight) {
+      if (!this.markers.includes(cities.origin)) {
+        this.markers.push(cities.origin)
+      }
 
-    this.markers.push(this.origin.city)
-    this.markers.push(this.destination.city)
+      if (!this.markers.includes(cities.destination)) {
+        this.markers.push(cities.destination)
+      }
+    }
 
-    this.addPath(this.origin, this.destination, '#FF3388')
-    // add path from webservice
-    // $map.getMarkerByCityName('Chattanooga')
-    //   .then(chattanooga => {
-    //     this.addPath(knoxville, chattanooga, '#FF3388')
-    //   })
+    if (this.markers.length <= 2) {
+      this.service.getCityData(this.markers[0], this.markers[1], null).then((data) => {
+        this.addPath(data[0], data[1], this.colorArray[0])
+      })
+    } else {
+      this.service.getCityData(this.markers[0], this.markers[1], this.markers[2]).then((data) => {
+        this.addPath(data[0], data[1], this.colorArray[0])
+        this.addPath(data[1], data[2], this.colorArray[1])
+      })
+    }
   }
 
-  addMarker (latitude, longitude) {
-    this.markers.push({
-      position: `[${latitude}, ${longitude}]`
-    })
+  getTheCitiesData () {
+    return this.service.getCitiesData()
+  }
+
+  getPathForMap () {
+    return this.service.getPaths()
   }
 
   addPath (a, b, color) {
@@ -53,6 +66,14 @@ class MapController {
     })
   }
 
+  drawLines (cities) {
+    if (cities.length === 2) {
+      this.addPath(cities[0], cities[1], this.colorArray[0])
+    } else {
+      this.addPath(cities[0], cities[1], this.colorArray[0])
+      this.addPath(cities[2], cities[3], this.colorArray[1])
+    }
+  }
 }
 
 export const flightMap = {

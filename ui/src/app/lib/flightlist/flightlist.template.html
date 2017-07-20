@@ -3,21 +3,30 @@
     <h1>Previous Flights</h1>
       <div class="container-fluid">
         <div class="row">
-          <div class="well panel panel-info col-xs-12" ng-repeat="flight in flightList.currentList">
-              <div class="panel-header">
-                <h2 class="panel-title" >
-                    Flight
-                </h2>
+          <h3 class="col-md-12" ng-if="flightList.currentList.length === 0">No results found...</h3>
+          <div ng-repeat="flights in flightList.currentList">
+            <div class="well panel panel-info col-xs-12" >
+                <div class="panel-header">
+                  <h2 class="panel-title" >
+                    Date Booked: {{flights.dateBooked | date: 'fullDate'}}
+                  </h2>
+                </div>
+
+              <div class="row panel-body">
+                <div class="well btn btn-default btn-lg col-xs-12" ui-sref="map({ flight: flights.flights })" ui-sref-active="active">
+                  <div class="col-md-3" ng-repeat="thisFlight in flights.flights">
+                    Flight <br>
+                    Origin: {{thisFlight.origin}} <br>
+                    Destination: {{thisFlight.destination}} <br>
+                    Flight Time: {{thisFlight.flightTime}} <br>
+                    Off set: {{thisFlight.offSetTime}}
+                  </div>
+                </div>
               </div>
-            <div class="row panel-body">
-              <div class="well btn btn-default btn-lg col-xs-12" ui-sref="map({ origin: flight.origin, destination: flight.destination })" ui-sref-active="active">
-                Origin: {{flight.origin}} <br>
-                Destination: {{flight.destination}} <br>
-                Flight Time: {{flight.flightTime}} <br>
-                Off set: {{flight.offSetTime}}
-              </div>
-            </div>
-          </div>
+
+            </div> <!-- END OF PANEL -->
+
+          </div> <!-- NG REPEAT END -->
         </div>
       </div>
     </div>

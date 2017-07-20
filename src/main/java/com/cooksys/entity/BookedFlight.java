@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -31,7 +32,7 @@ public class BookedFlight {
 	@ManyToOne
 	private FlightUser bookedUser;
 
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToMany(mappedBy = "bookedFlight", cascade = { CascadeType.ALL })
 	private Set<FlightToBook> flights = new HashSet<>();
 
 	public Integer getId() {
