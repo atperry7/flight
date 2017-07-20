@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: displaymap.component.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-19T19:30:36-05:00
+ * @Last modified time: 2017-07-19T19:38:14-05:00
  */
  import templateUrl from 'flightDisplay/displaymap/displaymap.template'
 
@@ -37,7 +37,7 @@
          }
        }
 
-       if (this.markers.length < 2) {
+       if (this.markers.length <= 2) {
          this.service.getCityData(this.markers[0], this.markers[1], null).then((data) => {
            this.addPath(data[0], data[1], this.colorArray[0])
          })

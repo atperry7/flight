@@ -4,21 +4,20 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-public class BookedFlight {
-
+public class FlightToBook {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -28,11 +27,20 @@ public class BookedFlight {
 	@Column(updatable = false)
 	private Date dateBooked;
 
-	@ManyToOne
-	private FlightUser bookedUser;
+	// Name of city where flight originates
+	private String origin;
 
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<FlightToBook> flights = new HashSet<>();
+	// Name of city where flight lands
+	private String destination;
+
+	// How many hours flight is in the air
+	private Integer flightTime;
+
+	// How many hours after the start of the day until the flight takes off
+	private Integer offSetTime;
+
+	@OneToMany(mappedBy = "flights", fetch = FetchType.LAZY)
+	private Set<BookedFlight> bookedFlights = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -50,20 +58,44 @@ public class BookedFlight {
 		this.dateBooked = dateBooked;
 	}
 
-	public FlightUser getBookedUser() {
-		return bookedUser;
+	public String getOrigin() {
+		return origin;
 	}
 
-	public void setBookedUser(FlightUser bookedUser) {
-		this.bookedUser = bookedUser;
+	public void setOrigin(String origin) {
+		this.origin = origin;
 	}
 
-	public Set<FlightToBook> getFlights() {
-		return flights;
+	public String getDestination() {
+		return destination;
 	}
 
-	public void setFlights(Set<FlightToBook> flights) {
-		this.flights = flights;
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public Integer getFlightTime() {
+		return flightTime;
+	}
+
+	public void setFlightTime(Integer flightTime) {
+		this.flightTime = flightTime;
+	}
+
+	public Integer getOffSetTime() {
+		return offSetTime;
+	}
+
+	public void setOffSetTime(Integer offSetTime) {
+		this.offSetTime = offSetTime;
+	}
+
+	public Set<BookedFlight> getBookedFlights() {
+		return bookedFlights;
+	}
+
+	public void setBookedFlights(Set<BookedFlight> bookedFlights) {
+		this.bookedFlights = bookedFlights;
 	}
 
 	@Override
@@ -82,7 +114,7 @@ public class BookedFlight {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BookedFlight other = (BookedFlight) obj;
+		FlightToBook other = (FlightToBook) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

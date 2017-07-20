@@ -2,9 +2,10 @@ package com.cooksys.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.cooksys.dto.FlightUserCredsOnlyDto;
 import com.cooksys.entity.BookedFlight;
 import com.cooksys.entity.FlightUser;
 import com.cooksys.mapper.FlightUserMapper;
@@ -14,6 +15,8 @@ import com.cooksys.repository.BookedFlightRepository;
 @Service
 public class BookedFlightService {
 
+	private Logger log = LoggerFactory.getLogger(getClass());
+	
 	private BookedFlightRepository bRepository;
 	private FlightUserService flightUserService;
 	private FlightUserMapper fMapper;
@@ -31,6 +34,8 @@ public class BookedFlightService {
 	public boolean createFlight(String username, String password, String flightOrigin, String flightDestination,
 			List<Flight> flights) {
 		BookedFlight bookedFlight = new BookedFlight();
+		
+		flights.forEach(flight -> log.debug(flight.getOrigin()));
 		
 		FlightUser flightUser = flightUserService.validation(username, password);
 		

@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cooksys.dto.BookedFlightDto;
-import com.cooksys.dto.FlightUserCredsOnlyDto;
 import com.cooksys.mapper.BookedFlightMapper;
 import com.cooksys.pojo.Flight;
 import com.cooksys.service.BookedFlightService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @RestController
 @RequestMapping("reserve")
@@ -34,6 +34,7 @@ public class BookedFlightController {
 	}
 	
 	@PostMapping("reservation")
+	@JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
 	public boolean reserveFlight( @RequestBody List<Flight> flights,
 			@RequestParam(required = true) String flightOrigin,
 			@RequestParam(required = true) String flightDestination,

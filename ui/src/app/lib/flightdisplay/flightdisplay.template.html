@@ -1,7 +1,23 @@
+<div class="container-fluid">
+
 <div class="jumbotron">
-  <h1>{{flightDisplay.origin()}} : {{flightDisplay.destination()}}</h1>
-  <div class="btn btn-default btn-lg" ng-click="flightDisplay.reservation()">Book Flight!</div>
-  <span>{{flightDisplay.message}}</span>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>{{flightDisplay.origin()}} to {{flightDisplay.destination()}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="btn btn-default btn-lg" ng-click="flightDisplay.reservation()">Book Flight!</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <span>{{flightDisplay.message}}</span>
+    </div>
+  </div>
 </div>
 
 <flight-display-map></flight-display-map>
+
+</div>

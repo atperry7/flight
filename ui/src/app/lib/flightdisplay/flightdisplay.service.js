@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.service.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-19T18:57:17-05:00
+ * @Last modified time: 2017-07-19T20:32:31-05:00
  */
  export class FlightDisplayService {
    constructor ($http, apiUrl, localStorageService, $log, $q) {
@@ -94,16 +94,12 @@
      let user = this.localStorageService.get('currentUser')
      let password = this.localStorageService.get('password')
      this.$log.log(`Username Check: ${user.username} :: Password Check ${password}`)
-     let flights = []
-     flights.push(flight)
-
-     let body = { flights: flights }
 
      return this.$http({
        method: 'POST',
        url: `${this.apiUrl}/reserve/reservation`,
-       params: { flightOrigin: origin, flightDestination: destination },
-       data: flights
+       params: { flightOrigin: origin, flightDestination: destination, username: user.username, password: password },
+       data: flight
      }).then((response) => {
        this.$log.log(`${response.data}`)
        if (response.data === true) {
