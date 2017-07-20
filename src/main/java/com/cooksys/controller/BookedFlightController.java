@@ -34,12 +34,13 @@ public class BookedFlightController {
 	}
 	
 	@PostMapping("reservation")
-	public boolean reserveFlight(@RequestBody(required = true) FlightUserCredsOnlyDto creds,
-			@RequestBody List<Flight> flights,
+	public boolean reserveFlight( @RequestBody List<Flight> flights,
 			@RequestParam(required = true) String flightOrigin,
-			@RequestParam(required = true) String flightDestination
+			@RequestParam(required = true) String flightDestination,
+			@RequestParam(required = true) String username,
+			@RequestParam(required = true) String password
 			) {
-		return bService.createFlight(creds, flightOrigin, flightDestination, flights);
+		return bService.createFlight(username, password, flightOrigin, flightDestination, flights);
 	}
 	
 	@PostMapping("reservation/layover")

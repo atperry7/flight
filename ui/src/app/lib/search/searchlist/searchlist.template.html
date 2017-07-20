@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-6 well"><h2>From: {{searchList.getOrigin()}}</h2></div>
       <div class="col-md-6 well"><h2>To: {{searchList.getDestination()}}</h2></div>
-      <h3 class="col-md-12" ng-if="searchList.getList().length === 0">No results found...</h3>
+      <h3 class="col-md-12" ng-if="searchList.searchList.length === 0">No results found...</h3>
       <div ng-repeat="flights in searchList.searchList">
 
         <div class="well panel panel-info col-xs-12" ng-repeat="flight in flights">

@@ -36,5 +36,14 @@ public class LocationController {
 	{
 		return locationService.get(cityName);
 	}
+	
+	@GetMapping("names")
+	public List<Location> getLocations(
+			@RequestParam(required=true) String cityOne,
+			@RequestParam(required=false) String cityTwo,
+			@RequestParam(required=false) String cityThree
+			) {
+		return locationService.getLocations(cityOne, cityTwo, cityThree);
+	}
 
 }

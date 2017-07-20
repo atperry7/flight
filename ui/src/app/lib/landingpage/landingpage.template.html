@@ -12,7 +12,7 @@
                 </h2>
               </div>
             <div class="row panel-body">
-              <div class="well btn btn-default btn-lg col-xs-12" ui-sref="flight({ origin: flight.origin, destination: flight.destination, offset: flight.offset, flightTime: flight.flightTime })" ui-sref-active="active">
+              <div class="well btn btn-default btn-lg col-xs-12" ui-sref="flight({ origin: flight.origin, destination: flight.destination, flight: [flight] })" ui-sref-active="active">
                 Origin: {{flight.origin}} <br>
                 Destination: {{flight.destination}} <br>
                 Flight Time: {{flight.flightTime}} <br>

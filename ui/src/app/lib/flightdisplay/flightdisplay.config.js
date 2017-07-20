@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: flightdisplay.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-19T14:23:08-05:00
+ * @Last modified time: 2017-07-19T18:52:44-05:00
  */
  export const config =
    ($stateProvider) => {

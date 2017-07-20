@@ -4,7 +4,7 @@
  * @Email:  atperry7@gmail.com
  * @Filename: search.config.js
  * @Last modified by:   Anthony Perry
- * @Last modified time: 2017-07-19T13:54:52-05:00
+ * @Last modified time: 2017-07-19T15:27:49-05:00
  */
  export const config =
    ($stateProvider) => {
@@ -25,7 +25,6 @@
        resolve: {
          to: (searchService, $transition$) => searchService.setDestination($transition$.params().to),
          from: (searchService, $transition$) => searchService.setOrigin($transition$.params().from),
-         currentList: (landingpageService, searchService) => landingpageService.getCurrentList().then(data => searchService.setCurrentList(data)),
          searchList: ($transition$, searchService) => searchService.searchRequest($transition$.params().from, $transition$.params().to)
        }
      })

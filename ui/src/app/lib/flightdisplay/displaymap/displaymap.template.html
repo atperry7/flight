@@ -3,12 +3,12 @@
     <div map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyAjVrveGOcQFlyoOSMitmNd8OU6wneX01s">
     	<ng-map center="{{flightDisplayMap.center}}" zoom="{{flightDisplayMap.zoom}}">
     	  <marker
-    			ng-repeat="$mapCity in flightDisplayMap.markers"
+    			ng-repeat="$mapCity in flightDisplayMap.markers track by $index"
     	    position="{{$mapCity}}">
     	  </marker>
 
     	  <shape
-    	    ng-repeat="$mapPath in flightDisplayMap.paths"
+    	    ng-repeat="$mapPath in flightDisplayMap.paths track by $index"
     	    name="polyline"
     	    path="{{$mapPath.path}}"
     	    stroke-color="{{$mapPath.strokeColor}}"

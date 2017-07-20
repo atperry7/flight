@@ -28,20 +28,20 @@ public class BookedFlightService {
 		return bRepository.findAll();
 	}
 
-	public boolean createFlight(FlightUserCredsOnlyDto creds, String flightOrigin, String flightDestination,
+	public boolean createFlight(String username, String password, String flightOrigin, String flightDestination,
 			List<Flight> flights) {
 		BookedFlight bookedFlight = new BookedFlight();
 		
-		FlightUser flightUser = flightUserService.validateUser(fMapper.toFlightUser(creds));
+		FlightUser flightUser = flightUserService.validation(username, password);
 		
-		if (flightUser != null && flightUser.getIsActive().equals(true)) {
-			bookedFlight.setBookedUser(flightUser);
-			bookedFlight.setOrigin(flightOrigin);
-			bookedFlight.setDestination(flightDestination);
-			
-			bRepository.save(bookedFlight);
-			return true;
-		}
+//		if (flightUser != null && flightUser.getIsActive().equals(true)) {
+//			bookedFlight.setBookedUser(flightUser);
+//			bookedFlight.setOrigin(flightOrigin);
+//			bookedFlight.setDestination(flightDestination);
+//			
+//			bRepository.save(bookedFlight);
+//			return true;
+//		}
 		
 		
 		return false;

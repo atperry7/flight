@@ -30,6 +30,10 @@ public class FlightUserService {
 				.findByCredentials_UsernameEqualsAndCredentials_PasswordEquals(
 						flightUser.getCredentials().getUsername(), flightUser.getCredentials().getPassword());
 	}
+	
+	public FlightUser validation(String username, String password) {
+		return uRepository.findByCredentials_UsernameEqualsAndCredentials_PasswordEquals(username, password);
+	}
 
 	public FlightUser save(FlightUser flightUser, String firstName, String lastName, String phone) {
 		//Checks if a user is created
